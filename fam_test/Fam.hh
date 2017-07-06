@@ -42,7 +42,6 @@ public:
         fc = new FAMConnection() ;
         fr = new FAMRequest() ;
 
-
         // connect to the FAM service
         if( 0 != FAMOpen( fc ) ){
                 std::cerr << "FAM connectivity test failed: unable to open FAM connection." << std::endl ;
