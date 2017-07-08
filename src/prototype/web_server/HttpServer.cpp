@@ -5,10 +5,12 @@
 #include <string.h>
 #include <fcntl.h>
 #include <sys/socket.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <iostream>
 #include <unistd.h>
+
 using namespace std;
 
 namespace servers {
@@ -87,10 +89,32 @@ void HTTPServer::GenericHandler(struct evhttp_request *req, void *arg) {
 void HTTPServer::ProcessRequest(struct evhttp_request *req) {
   struct evbuffer *buf = evbuffer_new();
   if (buf == NULL) return;
-  evbuffer_add_printf(buf, "Requested: %s\n", evhttp_request_uri(req));
+
+printf("I got herre: %s\n", evhttp_request_uri(req));
+
+  int fd;
+  std::string file = ".";
+  file+=evhttp_request_uri(req);
+  if ((fd = open(file.c_str(), O_RDONLY)) > 0) {
+
+printf("I got herre 2\n");
+
+      struct stat st;
+      if (fstat(fd, &st)>=0) {
+          evhttp_add_header(evhttp_request_get_output_headers(req),
+		    "Content-Type", "text/html");
+          evbuffer_add_file(buf, fd, 0, st.st_size);
+     }
+  }
+  else
+  {
+printf("I got herre 3\n");
+
+      evbuffer_add_printf(buf, "Requested: %s\n", evhttp_request_uri(req));
+  }
+printf("I got herre 4\n");
   evhttp_send_reply(req, HTTP_OK, "OK", buf);
 }
-
 }
 }
 
