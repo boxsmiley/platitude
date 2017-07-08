@@ -48,8 +48,8 @@
       <file leaf-file-name="Fam.hh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Fam.hh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="25" column="10" lean-forward="false" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+            <state relative-caret-position="198">
+              <caret line="48" column="39" lean-forward="false" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
               <folding>
                 <element signature="e#80#96#0" expanded="true" />
               </folding>
@@ -76,8 +76,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="408" />
-    <option name="y" value="540" />
+    <option name="x" value="423" />
+    <option name="y" value="174" />
     <option name="width" value="1400" />
     <option name="height" value="951" />
   </component>
@@ -325,15 +325,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1499342183822</updated>
-      <workItem from="1499342185779" duration="3612000" />
+      <workItem from="1499342185779" duration="3694000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3612000" />
+    <option name="totallyTimeSpent" value="3694000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="408" y="540" width="1400" height="951" extended-state="0" />
+    <frame x="423" y="174" width="1400" height="951" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14357142" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -388,8 +388,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Fam.hh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="10" lean-forward="false" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+        <state relative-caret-position="198">
+          <caret line="48" column="39" lean-forward="false" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
           <folding>
             <element signature="e#80#96#0" expanded="true" />
           </folding>
