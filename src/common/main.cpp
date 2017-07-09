@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "DataStore.hh"
+#include "DataTable.hh"
 
 
 
@@ -23,7 +23,7 @@ void listener2(const char* update)
 
 int main(int argc, char** argv)
 {
-   DataStore<stuff> d(10);
+   DataTable<stuff> d(10);
    d.addListener(listener);
    d.addListener(listener2);
 
