@@ -12,9 +12,21 @@ struct stuff
    unsigned char name[245];
 };
 
+void listener(const char* update)
+{
+   printf("listener 1: %s\n", update);
+}
+void listener2(const char* update)
+{
+   printf("listener 2: %s\n", update);
+}
+
 int main(int argc, char** argv)
 {
    DataStore<stuff> d(10);
+   d.addListener(listener);
+   d.addListener(listener2);
+
 
    int put = 0;
    for(int i=0;i<20;i++)

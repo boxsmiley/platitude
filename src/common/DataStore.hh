@@ -1,4 +1,5 @@
 #include <string.h>
+#include <vector>
 
 template<class T>
 class DataStore
@@ -9,6 +10,7 @@ class DataStore
    int currItems;
    T* storage;
    DataStore() {}
+   std::vector<void (*)(const char*)> callbacks;
 
 
    public:
@@ -29,10 +31,19 @@ class DataStore
       }
       else
       {
+         for (int i=0;i<callbacks.size();i++)
+         {
+             callbacks[i]("putting stuff\n");
+         }
          memcpy(&storage[currItems], items, sizeof(T) * newItems);
          currItems++;
       }
       return currItems;
+   }
+
+   void addListener(void (callback)(const char*))
+   {
+      this->callbacks.push_back(callback);
    }
 
    T* get(int* numItems) { *numItems = this->numItems; return storage; }
