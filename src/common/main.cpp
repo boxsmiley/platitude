@@ -13,21 +13,21 @@ struct stuff
    unsigned char name[245];
 };
 
-void listener(const char* update)
+void listener(const char* update, const stuff* newVal)
 {
-   printf("listener 1: %s\n", update);
+   printf("listener 1: %s %d\n", update, newVal->a);
 }
-void listener2(const char* update)
+void listener2(const char* update, const stuff* newVal)
 {
-   printf("listener 2: %s\n", update);
+   printf("listener 2: %s %d\n", update, newVal->a);
 }
 
 int main(int argc, char** argv)
 {
 
    DataTable<stuff> d(10);
-   //d.addListener(listener);
-   //d.addListener(listener2);
+   d.addListener(listener);
+   d.addListener(listener2);
 
 
    int put = 0;
@@ -41,14 +41,13 @@ int main(int argc, char** argv)
 
    }
 
-exit(0);
 
    int numItems;
-   stuff* retrieved = d.get(&numItems);
+   DataIterator<stuff> retrieved = d.get(&numItems);
 
    for (int i=0;i<numItems;i++)
    {
-      printf("query: %d\n", retrieved[i].a);
+      printf("query: %d\n", retrieved.next()->a);
    }
 
 }

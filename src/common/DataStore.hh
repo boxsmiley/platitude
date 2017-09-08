@@ -1,3 +1,6 @@
+#ifndef DATA_STORE
+#define DATA_STORE
+
 #include <string.h>
 #include <stdio.h>
 #include <vector>
@@ -29,3 +32,4 @@ class DataStore
 
 };
 
+#endif

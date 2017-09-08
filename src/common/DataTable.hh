@@ -1,5 +1,9 @@
+#ifndef DATA_TABLE
+#define DATA_TABLE
+
 #include <string.h>
 #include <vector>
+#include "DataIterator.hh"
 
 template<class T>
 class DataTable
@@ -8,17 +12,17 @@ class DataTable
    private:
 
    int allocItems;
+   int currIdx;
    int numItems;
-   int currItemIdx;
    T* storage;
    DataTable() {}
-   std::vector<void (*)(const char*)> callbacks;
+   std::vector<void (*)(const char*, const T*)> callbacks;
 
 
    public:
    DataTable(int allocItems)
    {
-      this->currItemIdx = 0;
+      this->currIdx = 0;
       this->numItems = 0;
       this->allocItems = allocItems;
       printf("Storing: %d of %ld sized items\n", allocItems,sizeof(T));
@@ -27,23 +31,26 @@ class DataTable
 
    int put(T* items, int newItems) 
    { 
-      this->currItemIdx = (this->currItemIdx+1) % this->allocItems;
+      this->currIdx = (this->currIdx+1) % this->allocItems;
 
       for (int i=0;i<callbacks.size();i++)
       {
-             callbacks[i]("putting stuff\n");
+             callbacks[i]("putting stuff\n", items);
       }
-      memcpy(&storage[currItemIdx], items, sizeof(T) * newItems);
+      memcpy(&storage[currIdx], items, sizeof(T) * newItems);
       this->numItems++;
       return numItems;
    }
 
-   void addListener(void (callback)(const char*))
+   void addListener(void (callback)(const char*, const T*))
    {
       this->callbacks.push_back(callback);
    }
 
-   T* get(int* numItems) { *numItems = this->numItems; return storage; }
+   DataIterator<T> get(int* numItems) { 
+         *numItems = this->numItems; 
+         return DataIterator<T>(currIdx, allocItems, storage); 
+   }
    
    int getNum() { return numItems; }
 
@@ -55,3 +62,5 @@ class DataTable
 
 };
 
+
+#endif
