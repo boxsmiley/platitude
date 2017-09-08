@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "DataTable.hh"
+#include <stdlib.h>
 
 
 
@@ -23,13 +24,14 @@ void listener2(const char* update)
 
 int main(int argc, char** argv)
 {
+
    DataTable<stuff> d(10);
-   d.addListener(listener);
-   d.addListener(listener2);
+   //d.addListener(listener);
+   //d.addListener(listener2);
 
 
    int put = 0;
-   for(int i=0;i<20;i++)
+   for(int i=0;i<17;i++)
    {
       stuff curr;
       curr.a = i;
@@ -38,6 +40,8 @@ int main(int argc, char** argv)
       printf("Stored now contains: %d items\n", put);
 
    }
+
+exit(0);
 
    int numItems;
    stuff* retrieved = d.get(&numItems);
