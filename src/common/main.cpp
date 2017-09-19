@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 
 
    int put = 0;
-   for(int i=0;i<17;i++)
+   for(int i=0;i<122;i++)
    {
       stuff curr;
       curr.a = i;

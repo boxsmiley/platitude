@@ -31,14 +31,16 @@ class DataTable
 
    int put(T* items, int newItems) 
    { 
-      this->currIdx = (this->currIdx+1) % this->allocItems;
+
+//printf("put idx: %d val: %d\n", this->currIdx, items[0].a);
 
       for (int i=0;i<callbacks.size();i++)
       {
              callbacks[i]("putting stuff\n", items);
       }
       memcpy(&storage[currIdx], items, sizeof(T) * newItems);
-      this->numItems++;
+      this->currIdx = (this->currIdx+newItems) % this->allocItems;
+      this->numItems+=newItems;
       return numItems;
    }
 
@@ -47,9 +49,13 @@ class DataTable
       this->callbacks.push_back(callback);
    }
 
-   DataIterator<T> get(int* numItems) { 
-         *numItems = this->numItems; 
-         return DataIterator<T>(currIdx, allocItems, storage); 
+   DataIterator<T> get(int* retItems) { 
+
+         *retItems = this->numItems < allocItems ? this->numItems : allocItems; 
+ 
+         int getIdx = this->numItems < allocItems ? 0 : currIdx;
+
+         return DataIterator<T>(getIdx, allocItems, storage); 
    }
    
    int getNum() { return numItems; }
