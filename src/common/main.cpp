@@ -1,20 +1,12 @@
 #include <stdio.h>
 #include "DataTable.hh"
 #include "ZeromqComms.hh"
+#include "stuff.hh"
 #include <stdlib.h>
 
 
 
-struct stuff
-{
-   int a;
-   int b;
-   int c;
-   unsigned char filler[3];
-   unsigned char name[245];
-};
-
-ZeromqComms<stuff> comms;
+ZeromqComms<stuff> comms(ZMQ_PUB);
 
 void listener(const char* update, const stuff* newVal)
 {
@@ -30,12 +22,15 @@ int main(int argc, char** argv)
 {
 
    DataTable<stuff> d(10);
+
+
    d.addListener(listener);
    d.addListener(listener2);
 
 
    int put = 0;
    for(int i=0;i<13;i++)
+   //for(int i=0;i<1000000;i++)
    {
       stuff curr;
       curr.a = i;

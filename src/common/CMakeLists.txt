@@ -7,5 +7,9 @@ set(SOURCE_FILES
         DataStore.hh
         main.cpp)
 
-add_executable(common ${SOURCE_FILES})
+add_executable(server ${SOURCE_FILES})
+target_link_libraries(server zmq)
+
+add_executable(client client.cpp)
+target_link_libraries(client zmq)
 
