@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "DataTable.hh"
+#include "ZeromqComms.hh"
 #include <stdlib.h>
 
 
@@ -13,9 +14,12 @@ struct stuff
    unsigned char name[245];
 };
 
+ZeromqComms<stuff> comms;
+
 void listener(const char* update, const stuff* newVal)
 {
    printf("listener 1: %s %d\n", update, newVal->a);
+   comms.post(newVal); 
 }
 void listener2(const char* update, const stuff* newVal)
 {
@@ -31,7 +35,7 @@ int main(int argc, char** argv)
 
 
    int put = 0;
-   for(int i=0;i<122;i++)
+   for(int i=0;i<13;i++)
    {
       stuff curr;
       curr.a = i;
