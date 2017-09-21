@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "DataTable.hh"
+#include "DataStore.hh"
 #include "ZeromqComms.hh"
 #include "stuff.hh"
 #include <stdlib.h>
@@ -21,6 +22,7 @@ void listener2(const char* update, const stuff* newVal)
 int main(int argc, char** argv)
 {
 
+   DataStore dataStore;
    DataTable<stuff> d(10);
 
 
