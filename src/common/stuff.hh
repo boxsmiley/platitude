@@ -1,3 +1,7 @@
+#ifndef STUFF
+#define STUFF
+
+
 struct stuff
 {
    int a;
@@ -6,4 +10,6 @@ struct stuff
    unsigned char filler[3];
    unsigned char name[245];
 };
+
+#endif
 

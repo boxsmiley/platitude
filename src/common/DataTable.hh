@@ -31,9 +31,6 @@ class DataTable
 
    int put(T* items, int newItems) 
    { 
-
-//printf("put idx: %d val: %d\n", this->currIdx, items[0].a);
-
       for (int i=0;i<callbacks.size();i++)
       {
              callbacks[i]("putting stuff\n", items);
